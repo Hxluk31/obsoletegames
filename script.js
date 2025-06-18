@@ -1,8 +1,6 @@
 // script.js
 
 // --- Oyun Verileri ---
-// Bu dizi, tüm oyun verilerini içerir.
-// Detay sayfaları ve filtreleme için buradaki ID'ler, kategoriler, yıllar ve linkler kullanılacaktır.
 const allGamesData = [
     {
         id: 'gta-3-2001',
@@ -36,9 +34,9 @@ const allGamesData = [
         name: 'Command & Conquer: Renegade',
         category: 'fps, aksiyon',
         year: '2003',
-        image: 'images/cnc-renegade-thumbnail.jpg', // Varsayılan resim
+        image: 'images/cnc-renegade-thumbnail.jpg',
         description: 'Command & Conquer evreninde geçen, birinci şahıs nişancı türündeki benzersiz bir oyun. GDI veya Nod saflarında savaşın.',
-        downloadLink: '#' // Lütfen buraya gerçek linki girin
+        downloadLink: '#'
     },
     {
         id: 'gta-san-andreas-2004',
@@ -103,12 +101,11 @@ const allGamesData = [
  * @param {Array<Object>} gamesToDisplay - Gösterilecek oyunların dizisi.
  */
 function renderGames(gamesToDisplay) {
-    const gameGrid = document.getElementById('allGamesGrid');
-    if (!gameGrid) return; // allGamesGrid yoksa, yani detay sayfasındaysak, fonksiyonu durdur.
+    const allGamesGrid = document.getElementById('allGamesGrid');
+    if (!allGamesGrid) return; // allGamesGrid yoksa, yani detay sayfasındaysak, fonksiyonu durdur.
 
-    gameGrid.innerHTML = ''; // Mevcut oyunları temizle
+    allGamesGrid.innerHTML = ''; // Mevcut oyunları temizle
 
-    // "Öne Çıkanlar" bölümünü de güncellemek için
     const featuredGrid = document.querySelector('#featured .game-grid');
     if (featuredGrid) {
         featuredGrid.innerHTML = ''; // Öne çıkanları da temizle
@@ -119,7 +116,7 @@ function renderGames(gamesToDisplay) {
     gamesToDisplay.forEach(game => {
         const gameCard = document.createElement('div');
         gameCard.classList.add('game-card');
-        gameCard.setAttribute('data-category', game.category);
+        gameCard.setAttribute('data-category', game.category); // Kategori verisi hala kartta kalabilir
         gameCard.setAttribute('data-name', game.name.toLowerCase());
         gameCard.setAttribute('data-year', game.year);
 
@@ -129,12 +126,12 @@ function renderGames(gamesToDisplay) {
             <p class="category">${game.category.split(', ').map(cat => cat.charAt(0).toUpperCase() + cat.slice(1)).join(', ')}</p>
             <a href="game-detail.html?id=${game.id}" class="btn btn-secondary">Detaylar</a>
         `;
-        gameGrid.appendChild(gameCard);
+        allGamesGrid.appendChild(gameCard);
 
-        // Öne çıkanlar bölümü için belirli oyunları ekleyebilirsiniz.
-        const featuredGameIds = ['gta-san-andreas-2004', 'fnaf-1-2014', 'fnaf-2-2014', 'fnaf-3-2015', 'ultrakill-2020']; // Öne çıkacak oyunlar
+        // Öne çıkanlar bölümü için belirli oyunları ekleyin
+        const featuredGameIds = ['gta-san-andreas-2004', 'fnaf-1-2014', 'ultrakill-2020']; // Öne çıkacak oyunların ID'leri
         if (featuredGrid && featuredGameIds.includes(game.id) && !featuredGamesAdded.has(game.id)) {
-            const featuredCard = gameCard.cloneNode(true); // Kartı kopyala
+            const featuredCard = gameCard.cloneNode(true);
             featuredGrid.appendChild(featuredCard);
             featuredGamesAdded.add(game.id);
         }
@@ -142,53 +139,31 @@ function renderGames(gamesToDisplay) {
 }
 
 /**
- * Arama, kategori ve yıl filtrelemesini uygular.
+ * Arama ve yıl filtrelemesini uygular. Kategori filtresi artık yok.
  */
 function filterGames() {
     const searchInput = document.getElementById('searchInput');
-    const categoryFilter = document.getElementById('categoryFilter');
     const yearFilter = document.getElementById('yearFilter');
 
     const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
-    const selectedCategory = categoryFilter ? categoryFilter.value : 'all';
     const selectedYear = yearFilter ? yearFilter.value : 'all';
 
     const filteredGames = allGamesData.filter(game => {
         const gameName = game.name.toLowerCase();
-        const gameCategory = game.category.toLowerCase();
-        const gameYear = parseInt(game.year);
+        const gameYear = game.year;
 
         const matchesSearch = searchTerm === '' || gameName.includes(searchTerm);
-        const matchesCategory = selectedCategory === 'all' || gameCategory.includes(selectedCategory);
-        const matchesYear = selectedYear === 'all' || gameYear.toString() === selectedYear;
+        const matchesYear = selectedYear === 'all' || gameYear === selectedYear;
 
-        return matchesSearch && matchesCategory && matchesYear;
+        return matchesSearch && matchesYear;
     });
 
     renderGames(filteredGames);
 }
 
 /**
- * Kategori etiketlerine tıklama olay dinleyicileri ekler.
- */
-function addCategoryFilterListeners() {
-    const categoryTags = document.querySelectorAll('.category-tag');
-    categoryTags.forEach(tag => {
-        tag.addEventListener('click', (e) => {
-            e.preventDefault();
-            const filterValue = tag.dataset.filter;
-            const categorySelect = document.getElementById('categoryFilter');
-            if (categorySelect) {
-                categorySelect.value = filterValue;
-                filterGames();
-            }
-        });
-    });
-}
-
-/**
  * Oyun detay sayfasını URL'deki ID'ye göre yükler.
-*/
+ */
 function loadGameDetail() {
     const urlParams = new URLSearchParams(window.location.search);
     const gameId = urlParams.get('id');
@@ -200,6 +175,7 @@ function loadGameDetail() {
         document.getElementById('gameDetailName').textContent = game.name;
         document.getElementById('gameDetailImage').src = game.image;
         document.getElementById('gameDetailImage').alt = game.name;
+        // Kategori bilgisi hala gösterilebilir, filtreleme dışı bırakıldı sadece.
         document.getElementById('gameDetailCategory').textContent = game.category.split(', ').map(cat => cat.charAt(0).toUpperCase() + cat.slice(1)).join(', ');
         document.getElementById('gameDetailYear').textContent = game.year;
         document.getElementById('gameDetailDescription').textContent = game.description;
@@ -216,46 +192,21 @@ function loadGameDetail() {
 }
 
 /**
- * Mevcut oyunlardaki tüm benzersiz kategorileri toplar ve filtreleme selectbox'ını doldurur.
- */
-function populateCategoryFilter() {
-    const categoryFilter = document.getElementById('categoryFilter');
-    if (!categoryFilter) return;
-
-    categoryFilter.innerHTML = '<option value="all">Tüm Kategoriler</option>'; // Mevcut seçenekleri temizle
-
-    const uniqueCategories = new Set();
-    allGamesData.forEach(game => {
-        game.category.split(', ').forEach(cat => {
-            uniqueCategories.add(cat.trim().toLowerCase());
-        });
-    });
-
-    const sortedCategories = Array.from(uniqueCategories).sort();
-
-    sortedCategories.forEach(cat => {
-        const option = document.createElement('option');
-        option.value = cat;
-        option.textContent = cat.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-        categoryFilter.appendChild(option);
-    });
-}
-
-/**
  * Mevcut oyunlardaki tüm benzersiz yılları toplar ve yıl filtreleme selectbox'ını doldurur.
+ * Kategori filtreleme fonksiyonu kaldırıldı.
  */
 function populateYearFilter() {
     const yearFilter = document.getElementById('yearFilter');
     if (!yearFilter) return;
 
-    yearFilter.innerHTML = '<option value="all">Tüm Yıllar</option>'; // Mevcut seçenekleri temizle
+    yearFilter.innerHTML = '<option value="all">Tüm Yıllar</option>';
 
     const uniqueYears = new Set();
     allGamesData.forEach(game => {
         uniqueYears.add(game.year);
     });
 
-    const sortedYears = Array.from(uniqueYears).sort((a, b) => parseInt(b) - parseInt(a)); // Yılları azalan sıraya göre sırala
+    const sortedYears = Array.from(uniqueYears).sort((a, b) => parseInt(b) - parseInt(a));
 
     sortedYears.forEach(year => {
         const option = document.createElement('option');
@@ -265,19 +216,20 @@ function populateYearFilter() {
     });
 }
 
+
 // --- Sayfa Yüklendiğinde Çalıştırılacak Kod ---
 document.addEventListener('DOMContentLoaded', () => {
     if (window.location.pathname.includes('game-detail.html')) {
         loadGameDetail();
     } else {
         // Ana sayfadaysak, oyunları render et ve filtreleme olay dinleyicilerini ekle
-        populateCategoryFilter(); // Kategori filtresini dinamik olarak doldur
+        // populateCategoryFilter() ve populateCategoryTags() çağrıları kaldırıldı
         populateYearFilter();     // Yıl filtresini dinamik olarak doldur
 
         renderGames(allGamesData); // Başlangıçta tüm oyunları göster
         document.getElementById('searchInput').addEventListener('keyup', filterGames);
-        document.getElementById('categoryFilter').addEventListener('change', filterGames);
+        // document.getElementById('categoryFilter').addEventListener('change', filterGames); çağrısı kaldırıldı
         document.getElementById('yearFilter').addEventListener('change', filterGames);
-        addCategoryFilterListeners(); // Kategori etiketleri için olay dinleyicilerini ekle
+        // addCategoryFilterListeners() çağrısı kaldırıldı
     }
 });
