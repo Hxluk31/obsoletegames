@@ -1,141 +1,169 @@
-/* Genel Stil Ayarları */
+/* Genel Ayarlar ve Fontlar */
 :root {
-    --primary-color: #007bff;
-    --secondary-color: #6c757d;
-    --accent-color: #28a745;
-    --dark-bg: #212529;
-    --light-bg: #f8f9fa;
-    --text-color: #343a40;
-    --card-bg: #ffffff;
-    --border-color: #dee2e6;
-    --shadow-light: rgba(0, 0, 0, 0.08);
-    --shadow-medium: rgba(0, 0, 0, 0.15);
+    --primary-color: #007bff; /* Mavi tonu */
+    --secondary-color: #6c757d; /* Gri tonu */
+    --accent-color: #28a745; /* Yeşil tonu */
+    --dark-bg: #212529; /* Koyu arka plan */
+    --light-bg: #f8f9fa; /* Açık arka plan */
+    --text-color: #e9ecef; /* Açık metin rengi */
+    --dark-text-color: #343a40; /* Koyu metin rengi */
+    --border-color: #495057;
+    --card-bg: #343a40; /* Kart arka planı */
+
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Open Sans', sans-serif;
+
+    --spacing-sm: 10px;
+    --spacing-md: 20px;
+    --spacing-lg: 40px;
+
+    --border-radius: 8px;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    --transition-speed: 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: var(--light-bg);
-    color: var(--text-color);
+    font-family: var(--font-body);
     line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--dark-bg);
+    overflow-x: hidden; /* Yatay kaydırmayı engeller */
 }
 
 a {
-    text-decoration: none;
     color: var(--primary-color);
-    transition: color 0.3s ease;
+    text-decoration: none;
+    transition: color var(--transition-speed);
 }
 
 a:hover {
     color: #0056b3;
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Kapsayıcılar */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+.section-padded {
+    padding: var(--spacing-lg) 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--text-color);
+    margin-bottom: var(--spacing-md);
+    text-align: center;
+}
+
+h2 {
+    font-size: 2.5em;
+    font-weight: 700;
+    margin-bottom: var(--spacing-lg);
+}
+
+/* Butonlar */
 .btn {
     display: inline-block;
-    padding: 12px 25px;
-    border-radius: 50px;
-    font-weight: bold;
+    padding: 10px 25px;
+    border-radius: var(--border-radius);
+    font-weight: 600;
     text-align: center;
-    transition: all 0.3s ease;
-    cursor: pointer;
+    transition: all var(--transition-speed);
     border: none;
+    cursor: pointer;
 }
 
 .btn-primary {
     background-color: var(--primary-color);
     color: #fff;
-    box-shadow: 0 4px 8px var(--shadow-medium);
 }
 
 .btn-primary:hover {
     background-color: #0056b3;
     transform: translateY(-2px);
+    box-shadow: var(--shadow);
 }
 
 .btn-secondary {
     background-color: var(--secondary-color);
     color: #fff;
+    font-size: 0.9em;
+    padding: 8px 20px;
 }
 
 .btn-secondary:hover {
     background-color: #5a6268;
-    transform: translateY(-2px);
-}
-
-.btn-download {
-    background-color: var(--accent-color);
-    color: #fff;
-    font-size: 0.95em;
-    padding: 10px 20px;
-    border-radius: 5px;
-    margin-top: 10px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.btn-download i {
-    margin-right: 8px;
-}
-
-.btn-download:hover {
-    background-color: #218838;
-    transform: translateY(-2px);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Header ve Navigasyon */
 header {
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('hero-bg.jpg') no-repeat center center/cover;
+    background-color: var(--dark-bg);
     color: #fff;
-    padding-bottom: 80px;
-    text-align: center;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-bottom: 1px solid var(--border-color);
 }
 
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 50px;
-    background-color: rgba(0, 0, 0, 0.7);
-    box-shadow: 0 2px 10px var(--shadow-medium);
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.logo a {
+nav .logo a {
+    font-family: var(--font-heading);
+    font-size: 2em;
+    font-weight: 700;
     color: #fff;
-    font-size: 1.8em;
-    font-weight: bold;
-    letter-spacing: 1px;
+    text-decoration: none;
+    transition: color var(--transition-speed);
+}
+
+nav .logo a:hover {
+    color: var(--primary-color);
 }
 
 .nav-links {
     list-style: none;
-    margin: 0;
-    padding: 0;
     display: flex;
-}
-
-.nav-links li {
-    margin-left: 30px;
+    gap: var(--spacing-md);
 }
 
 .nav-links a {
-    color: #fff;
+    color: var(--text-color);
     font-weight: 500;
-    font-size: 1.1em;
     padding: 5px 0;
     position: relative;
+    transition: color var(--transition-speed);
 }
 
 .nav-links a::after {
     content: '';
     position: absolute;
+    left: 0;
+    bottom: 0;
     width: 0;
     height: 2px;
-    bottom: 0;
-    left: 0;
     background-color: var(--primary-color);
-    transition: width 0.3s ease-out;
+    transition: width var(--transition-speed);
 }
 
 .nav-links a:hover::after {
@@ -145,109 +173,89 @@ nav {
 .search-bar {
     display: flex;
     align-items: center;
+    gap: 5px;
 }
 
-.search-bar input {
+.search-bar input[type="text"] {
     padding: 8px 15px;
-    border: none;
-    border-radius: 25px;
-    outline: none;
-    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    background-color: #343a40;
     color: var(--text-color);
-    width: 180px;
-    transition: width 0.3s ease;
+    font-family: var(--font-body);
+    transition: all var(--transition-speed);
 }
 
-.search-bar input:focus {
-    width: 250px;
+.search-bar input[type="text"]::placeholder {
+    color: #ced4da;
+}
+
+.search-bar input[type="text"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
 }
 
 .search-bar button {
     background-color: var(--primary-color);
     color: #fff;
     border: none;
-    border-radius: 50%;
-    padding: 8px 10px;
-    margin-left: -35px; /* inputun üzerine gelmesi için */
+    padding: 8px 12px;
+    border-radius: var(--border-radius);
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color var(--transition-speed);
 }
 
 .search-bar button:hover {
     background-color: #0056b3;
 }
 
+/* Hero Bölümü */
 .hero {
-    padding: 100px 20px;
-    max-width: 800px;
-    margin: 0 auto;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/hero-bg.jpg') no-repeat center center/cover;
+    text-align: center;
+    padding: 100px var(--spacing-md);
+    color: #fff;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .hero h1 {
     font-size: 3.5em;
-    margin-bottom: 20px;
-    animation: fadeInDown 1s ease-out;
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.2;
 }
 
 .hero p {
-    font-size: 1.3em;
-    margin-bottom: 30px;
-    animation: fadeInUp 1s ease-out 0.2s;
+    font-size: 1.2em;
+    margin-bottom: var(--spacing-lg);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-/* Main Content */
-main {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 0 20px;
-}
-
-.section-padded {
-    padding: 60px 0;
-}
-
-h2 {
-    font-size: 2.5em;
-    color: var(--primary-color);
-    text-align: center;
-    margin-bottom: 40px;
-    position: relative;
-}
-
-h2 i {
-    margin-right: 15px;
-    color: var(--accent-color);
-}
-
-h2::after {
-    content: '';
-    display: block;
-    width: 80px;
-    height: 4px;
-    background-color: var(--accent-color);
-    margin: 15px auto 0;
-    border-radius: 2px;
-}
-
+/* Oyun Izgarası (Game Grid) */
 .game-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
+    gap: var(--spacing-md);
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
+/* Oyun Kartları */
 .game-card {
     background-color: var(--card-bg);
-    border-radius: 12px;
+    border-radius: var(--border-radius);
     overflow: hidden;
-    box-shadow: 0 8px 20px var(--shadow-light);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: var(--shadow);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
     display: flex;
     flex-direction: column;
 }
 
 .game-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 25px var(--shadow-medium);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
 .game-card img {
@@ -258,128 +266,123 @@ h2::after {
 }
 
 .game-card h3 {
-    font-size: 1.6em;
-    margin: 15px 15px 5px;
+    font-size: 1.5em;
+    margin: var(--spacing-sm) var(--spacing-sm) 5px var(--spacing-sm);
+    text-align: left;
     color: var(--primary-color);
 }
 
 .game-card .category {
     font-size: 0.9em;
     color: var(--secondary-color);
-    margin: 0 15px 15px;
+    margin: 0 var(--spacing-sm) var(--spacing-sm) var(--spacing-sm);
+    text-align: left;
 }
 
-.game-card .btn-secondary,
-.game-card .btn-download {
-    width: calc(100% - 30px);
-    margin: 0 15px 15px;
-    box-sizing: border-box; /* padding'in genişliği etkilememesi için */
+.game-card .btn-secondary {
+    margin: 0 var(--spacing-sm) var(--spacing-sm) var(--spacing-sm);
+    align-self: flex-start;
+}
+
+/* Öne Çıkanlar (Featured) Bölümü Özel Stilleri */
+#featured h2 i {
+    color: #ffc107;
+    margin-right: 10px;
+}
+
+/* Tüm Oyunlar Bölümü Özel Stilleri */
+#games h2 i {
+    color: var(--accent-color);
+    margin-right: 10px;
 }
 
 /* Filtre Kontrolleri */
 .filter-controls {
-    text-align: center;
-    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .filter-controls select {
     padding: 10px 15px;
+    border-radius: var(--border-radius);
     border: 1px solid var(--border-color);
-    border-radius: 8px;
-    background-color: #fff;
-    font-size: 1em;
+    background-color: var(--card-bg);
     color: var(--text-color);
-    outline: none;
-    appearance: none; /* Varsayılan select stilini kaldır */
-    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007bff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13.2-6.5H18.6c-5.9%200-11.4%203.4-13.2%206.5-3.8%206.7-1.1%2014.2%206.5%2016l128%20127.9c3.7%203.7%209.7%203.7%2013.4%200l128-127.9c7.6-1.8%2010.3-9.3%206.5-16z%22%2F%3E%3C%2Fsvg%3E');
+    font-family: var(--font-body);
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%20viewBox%3D%220%200%20292.4%20292.4%22%3E%3Cpath%20fill%3D%22%23e9ecef%22%20d%3D%22M287%20197.8L154.7%2065.5c-4.9-4.9-12.8-4.9-17.7%200L5.3%20197.8c-4.9%204.9-4.9%2012.8%200%2017.7s12.8%204.9%2017.7%200l131.6-131.6L269.3%20215.5c4.9%204.9%2012.8%204.9%2017.7%200s4.9-12.8%200-17.7z%22%2F%3E%3C%2Fsvg%3E');
     background-repeat: no-repeat;
     background-position: right 10px top 50%;
     background-size: 12px auto;
     cursor: pointer;
-    min-width: 200px;
+    transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
 }
 
-/* Kategori Etiketleri */
-.category-list {
-    text-align: center;
-    margin-top: 20px;
+.filter-controls select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
 }
-
-.category-tag {
-    display: inline-block;
-    background-color: var(--primary-color);
-    color: #fff;
-    padding: 8px 15px;
-    border-radius: 20px;
-    margin: 5px;
-    font-size: 0.9em;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.category-tag:hover {
-    background-color: #0056b3;
-    transform: translateY(-2px);
-}
-
 
 /* Footer */
 footer {
-    background-color: var(--dark-bg);
-    color: #fff;
-    padding: 50px 0 20px;
-    margin-top: 50px;
+    background-color: #1a1e21;
+    color: var(--text-color);
+    padding: var(--spacing-lg) var(--spacing-md) var(--spacing-sm) var(--spacing-md);
+    border-top: 1px solid var(--border-color);
+    font-size: 0.9em;
 }
 
 .footer-content {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    gap: var(--spacing-md);
 }
 
 .footer-section {
     flex: 1;
-    min-width: 250px;
-    margin: 20px;
+    min-width: 200px;
+    margin-bottom: var(--spacing-md);
 }
 
 .footer-section h3 {
-    font-size: 1.5em;
-    margin-bottom: 20px;
-    color: var(--primary-color);
+    font-size: 1.2em;
+    margin-bottom: var(--spacing-sm);
+    color: #fff;
+    text-align: left;
 }
 
-.footer-section p,
-.footer-section ul {
-    font-size: 0.95em;
-    color: #ccc;
+.footer-section p, .footer-section ul {
+    color: #adb5bd;
 }
 
 .footer-section ul {
     list-style: none;
-    padding: 0;
-}
-
-.footer-section ul li {
-    margin-bottom: 10px;
 }
 
 .footer-section ul li a {
-    color: #ccc;
+    color: #adb5bd;
+    display: block;
+    padding: 5px 0;
 }
 
 .footer-section ul li a:hover {
-    color: #fff;
+    color: var(--primary-color);
 }
 
 .footer-section.social a {
-    display: inline-block;
-    color: #fff;
     font-size: 1.5em;
     margin-right: 15px;
-    transition: color 0.3s ease;
+    color: #adb5bd;
 }
 
 .footer-section.social a:hover {
@@ -388,143 +391,193 @@ footer {
 
 .footer-bottom {
     text-align: center;
-    margin-top: 40px;
-    padding-top: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    font-size: 0.9em;
-    color: #aaa;
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--border-color);
+    margin-top: var(--spacing-md);
+    color: #adb5bd;
 }
 
-/* Animasyonlar */
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* Detay Sayfası Stilleri (game-detail.html) */
+.game-detail-container {
+    max-width: 900px;
+    margin: var(--spacing-lg) auto;
+    padding: var(--spacing-md);
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    color: var(--text-color);
 }
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.game-detail-container h1 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-lg);
 }
 
-
-/* Duyarlı Tasarım */
-@media (max-width: 992px) {
-    nav {
-        padding: 15px 30px;
-    }
-    .nav-links {
-        display: none; /* Mobil menü için JS ile açıp kapatılabilir */
-    }
-    .search-bar input {
-        width: 150px;
-    }
-    .search-bar input:focus {
-        width: 200px;
-    }
-    .hero h1 {
-        font-size: 2.8em;
-    }
-    h2 {
-        font-size: 2em;
-    }
-    .game-grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    }
+.game-detail-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-lg);
+    justify-content: center;
 }
 
+.game-detail-image-wrapper {
+    flex: 1 1 350px;
+    max-width: 400px;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.game-detail-image-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.game-detail-info {
+    flex: 1 1 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.game-detail-info h2 {
+    font-size: 2.2em;
+    color: var(--text-color);
+    text-align: left;
+    margin-bottom: 0;
+}
+
+.game-detail-info p {
+    font-size: 1.1em;
+    color: #ced4da;
+}
+
+.game-detail-info p strong {
+    color: #fff;
+}
+
+.game-detail-description {
+    margin-top: var(--spacing-md);
+    font-size: 1em;
+    line-height: 1.8;
+    color: var(--text-color);
+}
+
+.game-detail-download-btn {
+    align-self: flex-start;
+    margin-top: var(--spacing-md);
+}
+
+/* Mobil Uyum (Responsive Design) */
 @media (max-width: 768px) {
     nav {
         flex-direction: column;
         align-items: flex-start;
+        gap: var(--spacing-sm);
     }
+
     .nav-links {
+        flex-direction: column;
         width: 100%;
-        justify-content: center;
-        margin-top: 15px;
+        text-align: center;
+        gap: 5px;
+        margin-top: var(--spacing-sm);
     }
+
     .nav-links li {
-        margin: 0 15px;
+        width: 100%;
     }
+
+    .nav-links a {
+        padding: 8px 0;
+        display: block;
+    }
+
     .search-bar {
         width: 100%;
+        margin-top: var(--spacing-sm);
         justify-content: center;
-        margin-top: 15px;
     }
-    .search-bar input {
-        width: 80%;
+
+    .search-bar input[type="text"] {
+        flex-grow: 1;
     }
-    .search-bar input:focus {
-        width: 90%;
-    }
-    .hero {
-        padding: 80px 15px;
-    }
+
     .hero h1 {
-        font-size: 2.2em;
+        font-size: 2.5em;
     }
+
     .hero p {
-        font-size: 1.1em;
+        font-size: 1em;
     }
-    h2 {
-        font-size: 1.8em;
+
+    .game-grid {
+        grid-template-columns: 1fr;
     }
-    .section-padded {
-        padding: 40px 0;
-    }
-    .footer-content {
+
+    .filter-controls {
         flex-direction: column;
         align-items: center;
-        text-align: center;
     }
+
+    .filter-controls select {
+        width: 80%;
+    }
+
+    /* Kategori listesi kaldırıldığı için ilgili stiller silindi */
+    /* .category-list {
+        justify-content: flex-start;
+        padding: 0 var(--spacing-md);
+    } */
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--spacing-lg);
+    }
+
     .footer-section {
-        margin: 15px 0;
         min-width: unset;
         width: 100%;
+    }
+
+    .footer-section h3, .footer-section ul, .footer-section p {
+        text-align: center;
+    }
+
+    .footer-section.social {
+        display: flex;
+        justify-content: center;
+    }
+
+    .game-detail-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .game-detail-image-wrapper,
+    .game-detail-info {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+
+    .game-detail-info h2 {
+        text-align: center;
+    }
+
+    .game-detail-download-btn {
+        align-self: center;
     }
 }
 
 @media (max-width: 480px) {
-    nav {
-        padding: 15px 20px;
+    .hero {
+        padding: 60px var(--spacing-md);
     }
-    .logo a {
-        font-size: 1.5em;
-    }
+
     .hero h1 {
-        font-size: 1.8em;
-    }
-    .hero p {
-        font-size: 1em;
-    }
-    .btn {
-        padding: 10px 20px;
-        font-size: 0.9em;
-    }
-    h2 {
-        font-size: 1.5em;
-    }
-    .game-grid {
-        grid-template-columns: 1fr;
-    }
-    .game-card .btn-secondary,
-    .game-card .btn-download {
-        font-size: 0.9em;
-        padding: 8px 15px;
-    }
-    .category-tag {
-        font-size: 0.8em;
-        padding: 6px 12px;
+        font-size: 2em;
     }
 }
