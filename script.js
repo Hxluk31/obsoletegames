@@ -5,15 +5,6 @@
 // Detay sayfaları ve filtreleme için buradaki ID'ler, kategoriler, yıllar ve linkler kullanılacaktır.
 const allGamesData = [
     {
-        id: 'deus-ex-2000',
-        name: 'Deus Ex',
-        category: 'rpg, aksiyon, bilim-kurgu',
-        year: '2000',
-        image: 'images/deus-ex-thumbnail.jpg',
-        description: 'Siberpunk temalı, seçimlerin hikayeyi ve oynanışı etkilediği, derin bir RPG ve aksiyon oyunu klasiği.',
-        downloadLink: 'https://ay.live/XSkCV'
-    },
-    {
         id: 'gta-3-2001',
         name: 'GTA 3',
         category: 'aksiyon, açık-dünya',
@@ -41,33 +32,6 @@ const allGamesData = [
         downloadLink: 'https://ay.live/NH76n'
     },
     {
-        id: 'splinter-cell-2002',
-        name: 'Tom Clancy\'s Splinter Cell',
-        category: 'aksiyon, gizlilik',
-        year: '2002',
-        image: 'images/splinter-cell-thumbnail.jpg',
-        description: 'Sam Fisher olarak gizli operasyonlara katıldığınız, ışık ve gölgeyi ustaca kullanarak düşmanlardan saklandığınız bir gizlilik oyunu.',
-        downloadLink: 'https://ay.live/NnQv'
-    },
-    {
-        id: 'serious-sam-2002',
-        name: 'Serious Sam: The First Encounter',
-        category: 'fps, aksiyon',
-        year: '2002',
-        image: 'images/serious-sam-thumbnail.jpg', // Varsayılan resim
-        description: 'Binlerce düşmanla aynı anda savaştığınız, hızlı tempolu ve bol aksiyonlu, eğlenceli bir birinci şahıs nişancı deneyimi.',
-        downloadLink: '#' // Lütfen buraya gerçek linki girin
-    },
-    {
-        id: 'prince-of-persia-sands-of-time-2003',
-        name: 'Prince of Persia: The Sands of Time',
-        category: 'aksiyon, macera, platform',
-        year: '2003',
-        image: 'images/prince-of-persia-thumbnail.jpg',
-        description: 'Zamanı geri sarma mekanikleriyle yenilikçi bir platform ve macera oyunu. Pers prensinin destansı yolculuğu.',
-        downloadLink: 'https://ay.live/Hvkn4'
-    },
-    {
         id: 'command-conquer-renegade-2003',
         name: 'Command & Conquer: Renegade',
         category: 'fps, aksiyon',
@@ -86,15 +50,6 @@ const allGamesData = [
         downloadLink: 'https://ay.live/oavMRd'
     },
     {
-        id: 'half-life-2-2004',
-        name: 'Half-Life 2',
-        category: 'fps, aksiyon, bilim-kurgu',
-        year: '2004',
-        image: 'images/half-life2-thumbnail.jpg',
-        description: 'Gordon Freeman\'ın Common Bileşimi\'ne karşı savaştığı, fizik tabanlı bulmacaları ve sürükleyici hikayesiyle ödüllü bir FPS şaheseri.',
-        downloadLink: 'https://ay.live/oavMRd'
-    },
-    {
         id: 'fear-2005',
         name: 'F.E.A.R.',
         category: 'fps, korku',
@@ -102,8 +57,43 @@ const allGamesData = [
         image: 'images/fear-thumbnail.jpg',
         description: 'Yoğun aksiyonu ve psikolojik korku unsurlarıyla harmanlanmış, gerilim dolu bir birinci şahıs nişancı oyunu.',
         downloadLink: 'https://ay.live/ERBH'
+    },
+    {
+        id: 'fnaf-1-2014',
+        name: 'Five Nights at Freddy\'s',
+        category: 'korku, gizem, hayatta-kalma',
+        year: '2014',
+        image: 'images/fnaf1.jpeg',
+        description: 'Bir güvenlik görevlisi olarak Freddy Fazbear\'s Pizza\'da gece vardiyasına kalın ve animatronik karakterlerden beş gece boyunca hayatta kalın.',
+        downloadLink: 'https://ay.live/qpvR'
+    },
+    {
+        id: 'fnaf-2-2014',
+        name: 'Five Nights at Freddy\'s 2',
+        category: 'korku, gizem, hayatta-kalma',
+        year: '2014',
+        image: 'images/fnaf2.jpeg',
+        description: 'Freddy Fazbear\'s Pizza\'nın yeni ve geliştirilmiş versiyonunda bir kez daha gece bekçiliği yapın. Yeni animatronikler ve daha fazla korku sizi bekliyor.',
+        downloadLink: 'https://ay.live/BaCdsk'
+    },
+    {
+        id: 'fnaf-3-2015',
+        name: 'Five Nights at Freddy\'s 3',
+        category: 'korku, gizem, hayatta-kalma',
+        year: '2015',
+        image: 'images/fnaf3.png',
+        description: '30 yıl sonra bir kez daha terörün derinliklerine inin. Fazbear\'s Fright: The Horror Attraction\'da tek bir hayatta kalan animatronik sizi bekliyor.',
+        downloadLink: 'https://ay.live/G63Xz0'
+    },
+    {
+        id: 'ultrakill-2020',
+        name: 'ULTRAKILL',
+        category: 'fps, aksiyon, hızlı-tempolu',
+        year: '2020',
+        image: 'images/ultrakill.png',
+        description: 'Klasik FPS oyunlarından ilham alan, kan, hız ve puan üzerine kurulu hızlı tempolu, retro tarzı bir nişancı oyunu. Şeytanları şık bir şekilde katledin!',
+        downloadLink: 'https://ay.live/aYKrf'
     }
-    // NOT: 2006 ve sonrası oyunlar (Bully, Taxi Driver, FNAF serisi, Oblivion, Company of Heroes, BioShock, Crysis, GTA IV, Fallout 3, Assassin's Creed II, Modern Warfare 2) filtreleme kuralına göre bu listeye dahil edilmemiştir.
 ];
 
 // --- Fonksiyonlar ---
@@ -127,32 +117,26 @@ function renderGames(gamesToDisplay) {
     const featuredGamesAdded = new Set(); // Öne çıkanlara eklenen oyunların ID'lerini tutmak için
 
     gamesToDisplay.forEach(game => {
-        const gameYear = parseInt(game.year);
+        const gameCard = document.createElement('div');
+        gameCard.classList.add('game-card');
+        gameCard.setAttribute('data-category', game.category);
+        gameCard.setAttribute('data-name', game.name.toLowerCase());
+        gameCard.setAttribute('data-year', game.year);
 
-        // Yalnızca 2005 ve öncesi oyunları göster
-        if (gameYear <= 2005) {
-            const gameCard = document.createElement('div');
-            gameCard.classList.add('game-card');
-            gameCard.setAttribute('data-category', game.category);
-            gameCard.setAttribute('data-name', game.name.toLowerCase());
-            gameCard.setAttribute('data-year', game.year);
+        gameCard.innerHTML = `
+            <img src="${game.image}" alt="${game.name}">
+            <h3>${game.name}</h3>
+            <p class="category">${game.category.split(', ').map(cat => cat.charAt(0).toUpperCase() + cat.slice(1)).join(', ')}</p>
+            <a href="game-detail.html?id=${game.id}" class="btn btn-secondary">Detaylar</a>
+        `;
+        gameGrid.appendChild(gameCard);
 
-            gameCard.innerHTML = `
-                <img src="${game.image}" alt="${game.name}">
-                <h3>${game.name}</h3>
-                <p class="category">${game.category.split(', ').map(cat => cat.charAt(0).toUpperCase() + cat.slice(1)).join(', ')}</p>
-                <a href="game-detail.html?id=${game.id}" class="btn btn-secondary">Detaylar</a>
-            `;
-            gameGrid.appendChild(gameCard);
-
-            // Rastgele birkaç oyunu "Öne Çıkanlar" bölümüne de ekleyebiliriz
-            // Veya belirgin oyunları elle seçebiliriz. Şimdilik belirli oyunları ekleyelim.
-            const featuredGameIds = ['gta-san-andreas-2004', 'half-life-2-2004']; // Öne çıkacak oyunlar
-            if (featuredGrid && featuredGameIds.includes(game.id) && !featuredGamesAdded.has(game.id)) {
-                const featuredCard = gameCard.cloneNode(true); // Kartı kopyala
-                featuredGrid.appendChild(featuredCard);
-                featuredGamesAdded.add(game.id);
-            }
+        // Öne çıkanlar bölümü için belirli oyunları ekleyebilirsiniz.
+        const featuredGameIds = ['gta-san-andreas-2004', 'fnaf-1-2014', 'fnaf-2-2014', 'fnaf-3-2015', 'ultrakill-2020']; // Öne çıkacak oyunlar
+        if (featuredGrid && featuredGameIds.includes(game.id) && !featuredGamesAdded.has(game.id)) {
+            const featuredCard = gameCard.cloneNode(true); // Kartı kopyala
+            featuredGrid.appendChild(featuredCard);
+            featuredGamesAdded.add(game.id);
         }
     });
 }
@@ -174,14 +158,9 @@ function filterGames() {
         const gameCategory = game.category.toLowerCase();
         const gameYear = parseInt(game.year);
 
-        // 2006 ve sonrası oyunları her zaman filtrele (gösterme)
-        if (gameYear > 2005) {
-            return false;
-        }
-
-        const matchesSearch = gameName.includes(searchTerm);
+        const matchesSearch = searchTerm === '' || gameName.includes(searchTerm);
         const matchesCategory = selectedCategory === 'all' || gameCategory.includes(selectedCategory);
-        const matchesYear = selectedYear === 'all' || gameYear.toString() === selectedYear; // Yıl tam eşleşmeli
+        const matchesYear = selectedYear === 'all' || gameYear.toString() === selectedYear;
 
         return matchesSearch && matchesCategory && matchesYear;
     });
@@ -198,7 +177,6 @@ function addCategoryFilterListeners() {
         tag.addEventListener('click', (e) => {
             e.preventDefault();
             const filterValue = tag.dataset.filter;
-            // Kategori filtresi seçeneğini güncelle ve filtrelemeyi tetikle
             const categorySelect = document.getElementById('categoryFilter');
             if (categorySelect) {
                 categorySelect.value = filterValue;
@@ -210,7 +188,7 @@ function addCategoryFilterListeners() {
 
 /**
  * Oyun detay sayfasını URL'deki ID'ye göre yükler.
- */
+*/
 function loadGameDetail() {
     const urlParams = new URLSearchParams(window.location.search);
     const gameId = urlParams.get('id');
@@ -227,25 +205,76 @@ function loadGameDetail() {
         document.getElementById('gameDetailDescription').textContent = game.description;
         document.getElementById('gameDetailDownloadLink').href = game.downloadLink;
     } else {
-        // Oyun bulunamazsa veya ID geçersizse hata mesajı göster
         document.getElementById('gameDetailName').textContent = 'Oyun Bulunamadı';
-        document.getElementById('gameDetailImage').src = 'images/placeholder.jpg'; // Varsayılan bir resim kullanabilirsin
+        document.getElementById('gameDetailImage').src = 'images/placeholder.jpg';
         document.getElementById('gameDetailImage').alt = 'Oyun Bulunamadı';
         document.getElementById('gameDetailCategory').textContent = 'N/A';
         document.getElementById('gameDetailYear').textContent = 'N/A';
         document.getElementById('gameDetailDescription').textContent = 'Aradığınız oyun bulunamadı veya mevcut değil. Lütfen ana sayfaya geri dönün.';
-        document.getElementById('gameDetailDownloadLink').style.display = 'none'; // İndir butonunu gizle
+        document.getElementById('gameDetailDownloadLink').style.display = 'none';
     }
+}
+
+/**
+ * Mevcut oyunlardaki tüm benzersiz kategorileri toplar ve filtreleme selectbox'ını doldurur.
+ */
+function populateCategoryFilter() {
+    const categoryFilter = document.getElementById('categoryFilter');
+    if (!categoryFilter) return;
+
+    categoryFilter.innerHTML = '<option value="all">Tüm Kategoriler</option>'; // Mevcut seçenekleri temizle
+
+    const uniqueCategories = new Set();
+    allGamesData.forEach(game => {
+        game.category.split(', ').forEach(cat => {
+            uniqueCategories.add(cat.trim().toLowerCase());
+        });
+    });
+
+    const sortedCategories = Array.from(uniqueCategories).sort();
+
+    sortedCategories.forEach(cat => {
+        const option = document.createElement('option');
+        option.value = cat;
+        option.textContent = cat.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+        categoryFilter.appendChild(option);
+    });
+}
+
+/**
+ * Mevcut oyunlardaki tüm benzersiz yılları toplar ve yıl filtreleme selectbox'ını doldurur.
+ */
+function populateYearFilter() {
+    const yearFilter = document.getElementById('yearFilter');
+    if (!yearFilter) return;
+
+    yearFilter.innerHTML = '<option value="all">Tüm Yıllar</option>'; // Mevcut seçenekleri temizle
+
+    const uniqueYears = new Set();
+    allGamesData.forEach(game => {
+        uniqueYears.add(game.year);
+    });
+
+    const sortedYears = Array.from(uniqueYears).sort((a, b) => parseInt(b) - parseInt(a)); // Yılları azalan sıraya göre sırala
+
+    sortedYears.forEach(year => {
+        const option = document.createElement('option');
+        option.value = year;
+        option.textContent = year;
+        yearFilter.appendChild(option);
+    });
 }
 
 // --- Sayfa Yüklendiğinde Çalıştırılacak Kod ---
 document.addEventListener('DOMContentLoaded', () => {
-    // Eğer URL 'game-detail.html' içeriyorsa detay sayfasını yükle
     if (window.location.pathname.includes('game-detail.html')) {
         loadGameDetail();
     } else {
         // Ana sayfadaysak, oyunları render et ve filtreleme olay dinleyicilerini ekle
-        renderGames(allGamesData); // Başlangıçta tüm oyunları (filtreleme kurallarına göre) göster
+        populateCategoryFilter(); // Kategori filtresini dinamik olarak doldur
+        populateYearFilter();     // Yıl filtresini dinamik olarak doldur
+
+        renderGames(allGamesData); // Başlangıçta tüm oyunları göster
         document.getElementById('searchInput').addEventListener('keyup', filterGames);
         document.getElementById('categoryFilter').addEventListener('change', filterGames);
         document.getElementById('yearFilter').addEventListener('change', filterGames);
